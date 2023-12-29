@@ -1,0 +1,28 @@
+class Solution
+{
+    //Function to return the name of candidate that received maximum votes.
+   public static String[] winner(String arr[], int n)
+    {
+        // add your code
+        String[] res = new String[2];
+        HashMap<String, Integer> map = new HashMap<>();
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            String candidate = arr[i];
+            map.put(candidate, map.getOrDefault(candidate, 0) + 1);
+            int votes = map.get(candidate);
+            if (votes > max) {
+                max = votes;
+                res[0] = candidate;
+                res[1] = String.valueOf(max);
+            } else if (votes == max && candidate.compareTo(res[0]) < 0) {
+                res[0] = candidate;
+                res[1] = String.valueOf(max);
+            }
+        }
+    
+        return res;
+    }
+
+
+}
